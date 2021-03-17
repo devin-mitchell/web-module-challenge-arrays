@@ -173,7 +173,7 @@ Use the filterByWord function below to do the following:
 function filterByWord(array, string){
     const newArray = [];
     for(var i = 0; i < array.length; i++){
-        if (array[i].includes(string)){
+        if (array[i].includes(string) || array[i].toLowerCase().includes(string)){
             newArray.push(array[i]);
         }
     }
@@ -194,7 +194,14 @@ Use the getAverageWordLength function below to do the following:
 */
 
 function getAverageWordLength(array){
-  
+    let counter = 0;
+    for(let i = 0; i < array.length; i++){
+        let newArray = array[i].split(' ');
+        for(var j = 0; j < newArray.length; j++){
+            counter++;
+        }
+    }
+  console.log(counter / array.length);
 }        
 
 console.log(getAverageWordLength(originalFlavors));
@@ -213,9 +220,6 @@ Use the getRandomFlavors function and new arrays below to do the following:
 */
 
 
-function getRandomFlavors(/*code here*/){
-    /*code here*/
-}
 
 // NEW DATA ARRAYS FOR STRETCH 2 ⬇️
 const newFlavors = [
@@ -298,7 +302,16 @@ const regionalFlavors = [
     "Caramel 'n' Cookies"
 ]
 
-
+function getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors){
+    let masterFlavorList = originalFlavors.concat(newFlavors, seasonalFlavors, regionalFlavors);
+    let randFlavors = []; 
+    for(let i = 0; i < 31; i++){
+        let rand = Math.floor(Math.random() * masterFlavorList.length);
+        randFlavors.push(masterFlavorList[rand]);
+    }
+    return randFlavors;
+}
+console.log(getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors));
 
 /* 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 */
 function foo(){
